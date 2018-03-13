@@ -11,8 +11,7 @@
 #include <string.h>
 #include <string>
 #include "TCPClient.h"
-#include "jsonrpc.h"
-#include "ArduinoJson/ArduinoJson.h"
+
 using namespace std;
 
 TCPClient tcp;
@@ -27,7 +26,6 @@ void sig_exit(int s)
 int main(int argc, char** argv) {
     cout << "Temperature client for the BBB" << endl;
     
-    //string json= "{\"jsonrcp\": \"2.0\", \"method\": \"getTemp\", \"id\": \"1\"}\n";
     string json= "{\"jsonrpc\": \"2.0\", \"method\": \"getTemp\", \"id\": \"1\"}";
     
     if(argc != 4) {
