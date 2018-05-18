@@ -33,11 +33,10 @@ int main(int argc, char** argv) {
     string status = tcp.receive();
     cout << "Got! " << status << endl;
     
-    std::string id = status.substr (19);     // get from pos to the end
-    //int id=std::stoi(str1);
-    //std::cout << id << endl;
-    
-    string json_set= "{\"jsonrpc\": \"2.0\", \"method\": \"setTemp\", \"params\": \"18\" ,\"id\": \""+id+"\"}";
+    int id = 1;
+    string id_string=to_string(id);
+    string json_set= "{\"jsonrpc\": \"2.0\", \"method\": \"setTemp\","
+            " \"params\": \"17\" ,\"id\": \""+id_string+"\"}";
      cout << "Sending:" << json_set << endl;
         //Get temperature frequently.
         tcp.Send(json_set);
@@ -49,9 +48,13 @@ int main(int argc, char** argv) {
                 cout << "Server Response: " << rec;
         }
    
-    string json_get= "{\"jsonrpc\": \"2.0\", \"method\": \"getTemp\", \"id\": \""+id+"\"}";
+    
     while(1)
     {
+        id++;
+        id_string=to_string(id);
+        string json_get= "{\"jsonrpc\": \"2.0\", \"method\": \"getTemp\", "
+                "\"id\": \""+id_string+"\"}";
         cout << "Sending:" << json_get << endl;
         //Get temperature frequently.
         tcp.Send(json_get);
